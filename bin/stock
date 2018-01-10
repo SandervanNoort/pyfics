@@ -1,0 +1,64 @@
+#!/usr/bin/env python
+
+"""Stockfish module"""
+
+# pylint: disable=E1101,E0611,E1002
+
+from gi.repository import GObject
+import sys
+
+import pyfics
+
+if __name__ == "__main__":
+    stock = pyfics.Stockfish()
+    stock.newgame()  # a new game
+    stock.position()  # the start position
+
+    game = pyfics.Game()
+    game.score = 0
+
+    def on_info(_widget, info):
+        """Save the latest info"""
+        if "pv" in info:
+            game.info = info
+
+    def on_bestmove(_widget, bestmove):
+        """A bestmove has been found"""
+        clicks = (bestmove[0:2], bestmove[2:4])
+        notation = game.clicks_to_notation(clicks)
+        print "score: %(score)s (depth: %(depth)s)" % game.info
+        print notation
+        moves = game.notation_to_moves(notation)
+        game.check_moves(notation, moves)
+        game.make_move(notation, moves)
+        game.add_history()
+        fen = game.position.get_fen()
+        print fen
+        print game.position.get_board()
+        print
+
+        if game.info["score"] == "mate 1":
+            sys.exit("Game finished")
+        all_moves = [game.moves[halfmove]
+                for halfmove in game.get_halfmoves()
+                if halfmove != 0]
+        if len(all_moves) > 20 and sum([all_moves[-i] != all_moves[-i - 4]
+                    for i in range(1, 13)]) == 0:
+            sys.exit("Draw by repetition")
+        elif game.position.props["moves_irreversible"] == 100:
+            sys.exit("Draw by 50-move rule")
+        else:
+            stock.position(moves=" ".join(all_moves))
+            stock.search("movetime 500")
+
+    def on_uci(_widget, _options):
+        """Show the uci options"""
+        pass
+#         for name, values in options.items():
+#             print name, values
+
+    stock.connect("info", on_info)
+    stock.connect("bestmove", on_bestmove)
+    stock.connect("uci", on_uci)
+    stock.search()
+    GObject.MainLoop().run()

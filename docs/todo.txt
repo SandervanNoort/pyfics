@@ -1,0 +1,19 @@
+DONE:
+- playing
+- resume
+- replay last game
+- notifications
+- css styling
+- move legality (movements, check, blocking)
+
+TODO:
+- move legality (rocade)
+- attention: blue until board move
+- saving game
+- accepting challenges
+- calculate tpr
+- stockfish analyses
+- loading pgn
+- loading copy/paste chessbomb
+- show seeks
+- check lag

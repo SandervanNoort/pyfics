@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=PyFics
+Exec=pyfics
+Icon=pyfics
+Categories=Game;
+Comment=Play chess on freechess.org
+Encoding=UTF-8
+Terminal=false
+Type=Application

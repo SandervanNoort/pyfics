@@ -1,0 +1,12 @@
+Source: pyfics
+Section: python
+Priority: extra
+Maintainer: Sander van Noort <Sander.van.Noort@gmail.com>
+Build-Depends: debhelper (>= 7), python-support, python (>=2.4)
+Standards-Version: 3.9.1
+
+Package: pyfics
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}
+Description: Play chess on freechess.org (fics)
+    Chess interface focussed on playing chess on freechess.org (fics).

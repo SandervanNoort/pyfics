@@ -1,0 +1,18 @@
+BOARD: (clicks)
+try:
+    notation = self.game.clicks_to_notation(clicks)
+    moves = pyfics.Game.notation_to_moves(notation)
+    self.game.check_moves(moves)
+except pyfics.Error, error:
+    self.board.undo_move(clicks)
+    return
+self.game.make_move(notation, moves) // (add history)
+self.board.make_move(moves)
+
+FICS: (style12)
+position = pyfics.Game.style12_to_position(style12)
+moves = self.game.notation_to_moves(position["notation"])
+self.game.make_move(position["notation"], moves)
+self.board.make_move(moves)
+self.game.position = position
+self.game.add_history()

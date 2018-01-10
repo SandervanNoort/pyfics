@@ -1,0 +1,89 @@
+@define-color bg rgb(91, 21, 0);
+@define-color white rgb(237, 193, 106);
+@define-color black rgb(139, 69, 19);
+@define-color active rgb(255, 255, 255);
+@define-color attention rgb(0, 0, 255);
+
+GtkTextView {
+    background-color: @bg;
+    color: @white;
+}
+
+GtkLabel {
+    color: @white;
+    font-size: 16px;
+}
+
+GtkLabel#name {
+    font-size: 15px;
+}
+GtkLabel#name_active {
+    font-size: 15px;
+    color: @active;
+}
+GtkLabel#rating {
+    font-size: 10px;
+}
+GtkLabel#rating_active {
+    font-size: 10px;
+    color: @active;
+}
+GtkLabel#time {
+    font-size: 30px;
+}
+GtkLabel#time_active {
+    font-size: 30px;
+    color: @active;
+}
+GtkLabel#timing {
+    font-size: 8px;
+}
+GtkLabel#info {
+    font-size: 10px;
+}
+
+#button_panel {
+    background-image: -gtk-gradient (linear, left top, left bottom
+            ,from (@bg), to (@bg));
+}
+
+GtkWindow {
+    background-color: @bg;
+}
+GtkLayout {
+    background-color: @bg;
+}
+
+GtkHPaned {
+    background-color: @bg;
+}
+GtkNotebook tab {
+    background-image: -gtk-gradient (linear, left top, left bottom
+            ,from (@black), to (@black));
+}
+GtkVBox {
+    background-color: @bg;
+}
+GtkHBox {
+    background-color: @bg;
+}
+GtkVPaned {
+    background-color: @bg;
+}
+
+
+GtkLayout#attention {
+    background-color: @attention;
+}
+GtkButton:hover {
+    background-image: -gtk-gradient (linear, left top, left bottom
+            ,from (@black), to (@black));
+}
+GtkButton {
+    background-image: -gtk-gradient (linear, left top, left bottom
+            ,from (@bg), to (@bg));
+}
+GtkCheckButton {
+    background-image: -gtk-gradient (linear, left top, left bottom
+            ,from (@bg), to (@bg));
+}
